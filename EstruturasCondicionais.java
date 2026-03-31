@@ -1,19 +1,18 @@
 import java.util.Scanner;
 
-public class IMC {
+class CalculadorIMC {
 
-    public static void main(String[] args) {
+public static void main(String[] args) {
 
-        Scanner ler = new Scanner(System.in);
+    String nome;
+    char genero;
+    double altura;
+    double peso;
+    double imc;
+    String classificacao = "";
 
-        String nome;
-        char genero;
-        double altura;
-        double peso;
-double imc;
-String classificacao = "";
-
-System.out.print("Informe o nome: ");
+    try (Scanner ler = new Scanner(System.in)) {
+        System.out.print("Informe o nome: ");
         nome = ler.nextLine();
 
         System.out.print("Informe o gênero (M/F/N): ");
@@ -66,7 +65,6 @@ System.out.print("Informe o nome: ");
         System.out.println("Classificação: " + classificacao);
 
         System.out.println("\nAtitus Educação - O lado certo da força!!!");
-
-        ler.close();
     }
+}
 }
