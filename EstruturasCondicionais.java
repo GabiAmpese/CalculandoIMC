@@ -1,37 +1,27 @@
-import java.util.Scanner;
-
-class CalculadorIMC {
+class EstruturasCondicionais {
 
 public static void main(String[] args) {
 
-    String nome;
-    char genero;
-    double altura;
+    String nome; // String é usado para armazenar texto, ideal para o nome do usuário
+    char genero; // char é usado para armazenar um único caractere, ideal para o gênero (M, F, N)
+    double altura; // double é usado para armazenar números com casas decimais, ideal para altura e peso
     double peso;
     double imc;
-    String classificacao = "";
+    String classificacao = ""; 
 
-    try (Scanner ler = new Scanner(System.in)) {
-        System.out.print("Informe o nome: ");
-        nome = ler.nextLine();
+    // Entrada de dados 
+    nome = IO.readln("Informe o nome: ");
+    genero = IO.readln("Informe o gênero (M/F/N): ").charAt(0); // .charAt(0) pega o primeiro caractere da string
+    altura = Double.parseDouble(IO.readln("Informe a altura (ex: 1.75): ")); // Double.parseDouble converte a string lida para um número decimal
+    peso = Double.parseDouble(IO.readln("Informe o peso (ex: 70.5): "));
 
-        System.out.print("Informe o gênero (M/F/N): ");
-        genero = ler.next().charAt(0);
-
-        System.out.print("Informe a altura (ex: 1.75): ");
-        altura = ler.nextDouble();
-
-        System.out.print("Informe o peso (ex: 70.5): ");
-        peso = ler.nextDouble();
-
-        // Cálculo do IMC
+        // Fórmula do Cálculo do IMC
         imc = peso / (altura * altura);
 
-        // Switch para gênero
         classificacao = switch (genero) {
             case 'M', 'm' -> {
                 if (imc >= 40) {
-                    yield "Obesidade Mórbida";
+                    yield "Obesidade Mórbida"; // yield é usado para retornar um valor dentro de um bloco de código em um switch expression
                 } else if (imc >= 30) {
                     yield "Obesidade Moderada";
                 } else if (imc >= 25) {
@@ -42,7 +32,7 @@ public static void main(String[] args) {
                     yield "Abaixo do Normal";
                 }
             }
-            case 'F', 'f', 'N', 'n' -> { // usa tabela feminina
+            case 'F', 'f', 'N', 'n' -> { 
                 if (imc >= 39) {
                     yield "Obesidade Mórbida";
                 } else if (imc >= 29) {
@@ -61,10 +51,8 @@ public static void main(String[] args) {
         // Saída
         System.out.println("\nNome: " + nome);
         System.out.println("Gênero: " + genero);
-        System.out.printf("IMC: %.2f\n", imc);
+        System.out.printf("IMC: %.2f\n", imc); // %.2f formata o número para mostrar apenas 2 casas decimais
         System.out.println("Classificação: " + classificacao);
 
-        System.out.println("\nAtitus Educação - O lado certo da força!!!");
     }
-}
 }
